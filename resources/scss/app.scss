@@ -1,7 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 
+#admin {
+    height: 100vh;
+    display: flex;
+
+    #wrapper {
+        flex-grow: 1;
+    }
+}
+
 body {
-    background-color: #100028;
+    // background-color: #100028;
 }
 
 .my-jumbo {
