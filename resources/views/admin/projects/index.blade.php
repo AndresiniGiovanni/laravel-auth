@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+    <a class="btn btn-success mt-5" href="{{ route('admin.projects.create') }}">Crea Nuovo Progetto</a>
     <div class="mt-5 row ">
         <table class="table">
             <thead>

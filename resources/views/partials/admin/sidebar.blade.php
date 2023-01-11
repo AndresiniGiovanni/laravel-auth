@@ -1,5 +1,5 @@
 
-    <nav class="">
+    <nav class="text-white">
         <div class="col-auto px-0">
             <div id="sidebar " class="collapse collapse-horizontal show border-end shadow-sm">
                 <div id="sidebar-nav" class="list-group border-0 rounded-0 ">
