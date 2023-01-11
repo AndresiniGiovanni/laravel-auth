@@ -44,6 +44,12 @@ class ProjectController extends Controller
         $data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $data['slug'] = $slug;
+        if ($request->hasFile('cover_image')) {
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+            $data['cover_image'] = $path;
+        }
+
+
         $new_project = Project::create($data);
         return redirect()->route('admin.projects.show', $new_project->slug);
     }
@@ -82,6 +88,15 @@ class ProjectController extends Controller
         $data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $data['slug'] = $slug;
+        if ($request->hasFile('cover_image')) {
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+            $data['cover_image'] = $path;
+        }
+
         $project->update($data);
         return redirect()->route('admin.projects.index')->with('messages', "$project->title updated successfully");
 

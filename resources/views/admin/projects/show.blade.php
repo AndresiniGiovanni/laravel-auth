@@ -6,11 +6,13 @@
         <div class="pt-3 mb-2"> <strong style="font-size: 24px">Titolo : </strong>{{ $project->title }}</div>
 
         <div> <strong style="font-size: 24px">Descrizione : </strong> {{ $project->content }}</div>
-
+        <div>
+            <img src="{{ asset('storage/' . $project->cover_image) }}">
+        </div>
 
         <div class="d-inline">
-            <button class="btn btn-primary mt-3 mb-4"><a class="text-white text-decoration-none"
-                    href="">Torna alla sezione precedente</a></button>
+            <button class="btn btn-primary mt-3 mb-4"><a class="text-white text-decoration-none" href="">Torna alla
+                    sezione precedente</a></button>
         </div>
 
         <div class="d-inline">

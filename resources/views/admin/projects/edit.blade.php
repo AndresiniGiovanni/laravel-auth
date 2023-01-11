@@ -3,7 +3,8 @@
 @section('content')
     <section class="container bg-dark rounded-3 mt-5 text-white">
         <h2 class="text-center pt-2">Inserisci</h2>
-        <form action="{{ route('admin.projects.update', $project->slug)}}" method="POST" enctype="multipart/form-data" class="p-4">
+        <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST" enctype="multipart/form-data"
+            class="p-4">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -18,6 +19,20 @@
                 <label for="content" class="form-label">Content</label>
                 <textarea class="form-control" id="content" name="content">{{ old('title', $project->content) }}</textarea>
             </div>
+
+            <div class="mb-5 mt-5">
+                <label for="cover_image" class="form-label">Upload Image</label>
+                <input type="file" name="cover_image" id="cover_image" class="form-control"
+                    @error('cover_image') is-invalid @enderror"">
+                @error('title')
+                    <div class="invalid-feedback text-white">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <img src="{{ asset('storage/' . $project->cover_image) }}">
+            </div>
+
             <button type="submit" class="btn btn-success">Submit</button>
             <button type="reset" class="btn btn-primary">Reset</button>
 
