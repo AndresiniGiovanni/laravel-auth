@@ -11,8 +11,8 @@
         </div>
 
         <div class="d-inline">
-            <button class="btn btn-primary mt-3 mb-4"><a class="text-white text-decoration-none" href="">Torna alla
-                    sezione precedente</a></button>
+            <button class="btn btn-primary mt-3 mb-4"><a class="text-white text-decoration-none" href="{{ route('admin.projects.index') }}">Torna alla
+                    sezione Admin</a></button>
         </div>
 
         <div class="d-inline">
