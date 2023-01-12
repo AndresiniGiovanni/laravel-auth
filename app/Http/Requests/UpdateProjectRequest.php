@@ -27,7 +27,18 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => ['required', Rule::unique('projects')->ignore($this->project)],
             'content' => 'nullable',
-            'cover_image' => ['nullable', 'image', 'max:1000']
+            'cover_image' => ['nullable', 'image', 'max:1000'],
+            'type_id' => 'nullable|exists:types,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Il titolo é obbligatorio',
+            'title.min' => 'Il titolo deve essere piú lungo di :min caratteri',
+            'title.max' => 'Il titolo non puó superare i :max caratteri.',
+            'title.unique:projects' => 'il titolo esiste giá'
         ];
     }
 }

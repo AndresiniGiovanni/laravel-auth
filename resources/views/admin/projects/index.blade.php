@@ -8,6 +8,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
+                    <th scope="col">Type</th>
                     <th class="ps-3" scope="col">Edit</th>
                     <th class="ps-4" scope="col">Delete</th>
                 </tr>
@@ -20,6 +21,7 @@
                                 href="{{ route('admin.projects.show', $project->slug) }}"
                                 title="View Project">{{ $project->title }}</a></td>
                         <td>{{ Str::limit($project->content, 100) }}</td>
+                        <td>{{ $project->type ? $project->type->name : 'None' }}</td>
                         <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
                                 title="Edit Post"> <button type="submit" class="btn btn-success"
                                     data-item-title="{{ $project->title }}">Edit</button></a></td>
