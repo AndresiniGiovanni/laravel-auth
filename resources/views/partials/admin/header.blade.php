@@ -19,11 +19,11 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                            <li class="list-group-item"> <a
+                                    class="nav-link text-black ms-2 {{ Route::currentRoutename() == 'admin.types.index' ? 'bg-primary' : '' }}"
+                                    href="{{ route('admin.types.index') }}"
+                                    class="text-decoration-none text-black">Types</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
                 </ul>

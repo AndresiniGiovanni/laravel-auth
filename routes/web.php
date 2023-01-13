@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')
             ->name('dashboard');
         route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
         route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
+        route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technologies:slug'])->except('show', 'create', 'edit');
     });
 
 // Route::middleware('auth')->group(function () {
