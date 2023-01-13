@@ -2,26 +2,29 @@
 @section('content')
     <a class="btn btn-success mt-5" href="{{ route('admin.projects.create') }}">Crea Nuovo Progetto</a>
     <div class="mt-5 row ">
-        <table class="table text-light">
+        <table class="table text-black">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Technology</th>
                     <th class="ps-3" scope="col">Edit</th>
                     <th class="ps-4" scope="col">Delete</th>
                 </tr>
             </thead>
-            <tbody class="text-light">
+            <tbody class="text-black">
                 @foreach ($projects as $project)
                     <tr>
                         <th scope="row">{{ $project->id }}</th>
-                        <td><a class="text-decoration-none text-light"
+                        <td><a class="text-decoration-none text-black"
                                 href="{{ route('admin.projects.show', $project->slug) }}"
                                 title="View Project">{{ $project->title }}</a></td>
                         <td>{{ Str::limit($project->content, 100) }}</td>
                         <td>{{ $project->type ? $project->type->name : 'None' }}</td>
+                        <td>{{ $project->technologies && count($project->technologies) > 0 ? count($project->technologies) : 0 }}
+                        </td>
                         <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
                                 title="Edit Project"> <button type="submit" class="btn btn-success"
                                     data-item-title="{{ $project->title }}">Edit</button></a></td>

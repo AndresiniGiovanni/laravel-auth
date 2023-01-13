@@ -6,17 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Http\Requests\StoreTechnologyRequest;
 use App\Http\Requests\UpdateTechnologyRequest;
+use Illuminate\Auth\Events\Validated;
 
 class TechnologyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
-        //
+        $technologies = Technology::all();
+
+        return view('admin.technologies.index', compact('technologies'));
     }
 
     /**
@@ -24,20 +27,28 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTechnologyRequest  $request
-     * @return \Illuminate\Http\Response
+     *
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $val = $request->validated();
+        $slug = Technology::generateSlug($request->name);
+        $val['slug'] = $slug;
+
+        Technology::create($val);
+
+        // redirect
+        return redirect()->back()->with('message', "Tag $slug added successfully");
+
     }
 
     /**
@@ -67,21 +78,28 @@ class TechnologyController extends Controller
      *
      * @param  \App\Http\Requests\UpdateTechnologyRequest  $request
      * @param  \App\Models\Technology  $technology
-     * @return \Illuminate\Http\Response
+     *
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $val_data = $request->validated();
+        $slug = Technology::generateSlug($request->name);
+        $val_data['slug'] = $slug;
+        $technology->update($val_data);
+        return redirect()->back()->with('message', "Technology $slug added successfully");
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Technology  $technology
-     * @return \Illuminate\Http\Response
+     *
      */
     public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect()->route('admin.technologies.index')->with('message', "$technology->name delete successfully");
     }
 }

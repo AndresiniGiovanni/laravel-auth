@@ -44,12 +44,32 @@
                 <select name="type_id" id="type_id" class="form-control" @error('type_id') is-invalid @enderror>
                     <option value="">Select Type</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                            {{ $type->name }}</option>
                     @endforeach
                 </select>
                 @error('type_id')
                     <div class="invalid-feedback text-white">{{ $message }}</div>
                 @enderror
+            </div>
+            <div class="mb-5 mt-3">
+                <label for="technologies" class="form-label">Technologies</label>
+                <select multiple class="form-select" name="technologies[]" id="technologies">
+                    <option value="">Select Technologies</option>
+                    @forelse ($technologies as $technology)
+                        @if ($errors->any())
+                            <option value="{{ $technology->id }}"
+                                {{ in_array($technology->id, old('technologies[]')) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+                        @else
+                            <option value="{{ $technology->id }}"
+                                {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
+                                {{ $technology->name }}</option>
+                        @endif
+                    @empty
+                        <option value="">No technologies</option>
+                    @endforelse
+                </select>
             </div>
         </form>
     </section>

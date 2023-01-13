@@ -1,7 +1,14 @@
 @extends('layouts.admin')
 @section('content')
-    <a class="btn btn-success mt-5" href="{{ route('admin.technologies.create') }}">create</a>
     <div class="mt-5 row ">
+        <form action="{{route('admin.technologies.store')}}" method="post" class="d-flex align-items-center">
+            @csrf
+            <div class="input-group mb-3">
+                <input type="text" name="name" class="form-control" placeholder="
+                Add a tag name here " aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
+            </div>
+        </form>
         <table class="table">
             <thead>
                 <tr>
@@ -16,14 +23,18 @@
                 @foreach ($technologies as $technology)
                     <tr>
                         <th scope="row">{{ $technology->id }}</th>
-                        <td><a class="text-decoration-none text-black"
-                                href="{{ route('admin.technologies.show', $technology->slug) }}"
-                                title="View Project">{{ $technology->name }}</a></td>
+                        <td>
+                            <a class="text-decoration-none text-black"
+                                {{-- href="{{ route('admin.technologies.show', $technology->slug) }}" --}}
+                                title="View Project">{{ $technology->name }}</a>
+                            </td>
                         <td>{{ count($technology->projects) }}</td>
-                        <td><a class="link-secondary" href="{{ route('admin.technologies.edit', $technology->slug) }}"
+                        <td>
+                            {{-- <a class="link-secondary" href="{{ route('admin.technologies.edit', $technology->slug) }}"
                                 title="Edit Project">
                                 <button technology="submit" class="btn btn-success"
-                                    data-item-title="{{ $technology->title }}">Edit</button></a></td>
+                                    data-item-title="{{ $technology->title }}">Edit</button></a> --}}
+                                </td>
                         <td>
                             <form action="{{ route('admin.technologies.destroy', $technology->slug) }}"method='POST'>
                                 @csrf

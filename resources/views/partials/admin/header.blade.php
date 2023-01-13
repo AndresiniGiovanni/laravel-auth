@@ -18,7 +18,7 @@
                             Dropdown
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.technologies.index') }}">Technologies</a></li>
                             <li class="list-group-item"> <a
                                     class="nav-link text-black ms-2 {{ Route::currentRoutename() == 'admin.types.index' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.types.index') }}"

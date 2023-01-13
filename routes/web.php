@@ -28,9 +28,9 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
-        route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
-        route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
-        route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technologies:slug'])->except('show', 'create', 'edit');
+        Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+        Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
+        Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug'])->except('show', 'create', 'edit');
     });
 
 // Route::middleware('auth')->group(function () {

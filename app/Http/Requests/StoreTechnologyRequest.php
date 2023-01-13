@@ -24,7 +24,18 @@ class StoreTechnologyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:types|max:50|min:3',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name' => 'required|unique:types|max:50|min:3',
+            'name.min' => 'Il titolo deve essere piú lungo di :min caratteri',
+            'name.max' => 'Il titolo non puó superare i :max caratteri.',
+            'name.unique:types' => 'il titolo esiste giá'
+
         ];
     }
 }

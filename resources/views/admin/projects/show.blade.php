@@ -18,6 +18,11 @@
         <div class="mb-4">
             <img src="{{ asset('storage/' . $project->cover_image) }}">
         </div>
+        @if ($project->technologies && count($project->technologies) > 0)
+            @foreach ($project->technologies as $technology)
+                <span>{{ $technology->name }}</span>
+            @endforeach
+        @endif
 
         <div class="d-inline">
             <button class="btn btn-primary mt-3 mb-4"><a class="text-white text-decoration-none"

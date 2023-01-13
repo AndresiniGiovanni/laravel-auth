@@ -46,6 +46,19 @@
                     <div class="invalid-feedback text-white">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="mb-5 mt-3">
+                <label for="technologies" class="form-label">Technologies</label>
+                <select multiple class="form-select" name="technologies[]" id="technologies">
+                    <option value="">Select Technologies</option>
+                    @forelse ($technologies as $technology)
+                            <option value="{{ $technology->id }}">
+                                {{ $technology->name }}</option>
+                    @empty
+                        <option value="">No technologies</option>
+                    @endforelse
+                </select>
+            </div>
         </form>
     </section>
 @endsection
