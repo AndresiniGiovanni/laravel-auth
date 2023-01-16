@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <a class="btn btn-success mt-5" href="{{ route('admin.projects.create') }}">Add new project</a>
+    <a class="btn btn-primary mt-5" href="{{ route('admin.projects.create') }}">Add new project</a>
     <div class="mt-5 row ">
         <table class="table text-black">
             <thead>

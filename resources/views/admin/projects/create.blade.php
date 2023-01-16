@@ -1,16 +1,14 @@
 @extends('layouts.admin')
 @section('content')
-    <section class="container bg-dark rounded-3 mt-5 text-white">
+    <section class="container bg-dark rounded-3 mt-5 text-white p-5">
         <h2 class="text-center pt-4">New Project</h2>
-        <form action="{{ route('admin.projects.store') }}" method="POST" class="p-4" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.store') }}" method="POST" class="" enctype="multipart/form-data">
             @csrf
 
             <button type="submit" class="btn btn-success">Submit</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
-            <button class="btn btn-danger mt-3 mb-3 ms-3"><a class="text-white text-decoration-none"
-                    href="{{ route('admin.projects.index') }}">Back to Admin</a></button>
+            <button type="reset" class="btn btn-primary ms-1">Reset</button>
 
-            <div class="mb-3">
+            <div class="mb-3 mt-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
                     name="title">
@@ -38,7 +36,8 @@
                 <select name="type_id" id="type_id" class="form-control" @error('type_id') is-invalid @enderror>
                     <option value="">Select Type</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                            {{ $type->name }}</option>
                     @endforeach
                 </select>
                 @error('type_id')
@@ -48,15 +47,19 @@
 
 
             <div class="mb-5 mt-3">
-                @foreach ($technologies as  $technology)
-                <div class="form-check form-check-inline">
-                    @if (old('technologies'))
-                        <input type="checkbox" class="form-check-input" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}" {{ in_array($technology->id, old("technologies", [])) ? 'checked' : '' }}>
-                      @else
-                        <input type="checkbox" class="form-check-input" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}" {{ $project->technologies->contains($technology, old("technologies", [])) ? 'checked' : '' }}>
-                    @endif
-                    <label class="form-check-label" for="{{ $technology->slug }}">{{ $technology->name }}</label>
-                </div>
+                @foreach ($technologies as $technology)
+                    <div class="form-check form-check-inline">
+                        @if (old('technologies'))
+                            <input type="checkbox" class="form-check-input" id="{{ $technology->slug }}"
+                                name="technologies[]" value="{{ $technology->id }}"
+                                {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                        @else
+                            <input type="checkbox" class="form-check-input" id="{{ $technology->slug }}"
+                                name="technologies[]" value="{{ $technology->id }}"
+                                {{ $project->technologies->contains($technology, old('technologies', [])) ? 'checked' : '' }}>
+                        @endif
+                        <label class="form-check-label" for="{{ $technology->slug }}">{{ $technology->name }}</label>
+                    </div>
                 @endforeach
 
 
