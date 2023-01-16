@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <a class="btn btn-success mt-5" href="{{ route('admin.projects.create') }}">Crea Nuovo Progetto</a>
+    <a class="btn btn-success mt-5" href="{{ route('admin.projects.create') }}">Add new project</a>
     <div class="mt-5 row ">
         <table class="table text-black">
             <thead>
@@ -40,6 +40,8 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $projects->links('vendor.pagination.bootstrap-5') }}
+
     </div>
     @include('partials.admin.modal-delete')
 @endsection

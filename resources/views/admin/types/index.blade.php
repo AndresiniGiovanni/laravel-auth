@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-    <a class="btn btn-success mt-5" href="{{ route('admin.types.create') }}">create</a>
+    <a class="btn btn-success mt-5" href="{{ route('admin.types.create') }}">Add new type</a>
     <div class="mt-5 row ">
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">types</th>
+                    <th scope="col">Types</th>
                     <th class="ps-3" scope="col">Edit</th>
                     <th class="ps-4" scope="col">Delete</th>
                 </tr>

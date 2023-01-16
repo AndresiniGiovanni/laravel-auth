@@ -1,15 +1,14 @@
 @extends('layouts.admin')
 @section('content')
     <section class="container bg-dark rounded-3 mt-5 text-white">
-        <h2 class="text-center pt-2">Crea un nuovo progetto</h2>
+        <h2 class="text-center pt-4">New Project</h2>
         <form action="{{ route('admin.projects.store') }}" method="POST" class="p-4" enctype="multipart/form-data">
             @csrf
 
             <button type="submit" class="btn btn-success">Submit</button>
             <button type="reset" class="btn btn-primary">Reset</button>
             <button class="btn btn-danger mt-3 mb-3 ms-3"><a class="text-white text-decoration-none"
-                    href="{{ route('admin.projects.index') }}">Torna
-                    alla sezione Admin</a></button>
+                    href="{{ route('admin.projects.index') }}">Back to Admin</a></button>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
@@ -47,17 +46,31 @@
                 @enderror
             </div>
 
+
             <div class="mb-5 mt-3">
-                <label for="technologies" class="form-label">Technologies</label>
-                <select multiple class="form-select" name="technologies[]" id="technologies">
-                    <option value="">Select Technologies</option>
+                @foreach ($technologies as  $technology)
+                <div class="form-check form-check-inline">
+                    @if (old('technologies'))
+                        <input type="checkbox" class="form-check-input" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}" {{ in_array($technology->id, old("technologies", [])) ? 'checked' : '' }}>
+                      @else
+                        <input type="checkbox" class="form-check-input" id="{{ $technology->slug }}" name="technologies[]" value="{{ $technology->id }}" {{ $project->technologies->contains($technology, old("technologies", [])) ? 'checked' : '' }}>
+                    @endif
+                    <label class="form-check-label" for="{{ $technology->slug }}">{{ $technology->name }}</label>
+                </div>
+                @endforeach
+
+
+
+
+
+                {{-- <select multiple class="form-select" name="technologies[]" id="technologies">
                     @forelse ($technologies as $technology)
                             <option value="{{ $technology->id }}">
                                 {{ $technology->name }}</option>
                     @empty
                         <option value="">No technologies</option>
                     @endforelse
-                </select>
+                </select> --}}
             </div>
         </form>
     </section>
